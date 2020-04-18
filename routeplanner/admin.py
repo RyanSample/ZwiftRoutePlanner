@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import World,Route
 
-# Register your models here.
+admin.site.register(World)
+admin.site.register(Route)

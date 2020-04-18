@@ -12,4 +12,4 @@ class Route(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.world + ' ' + self.route_name
+        return self.route_name
