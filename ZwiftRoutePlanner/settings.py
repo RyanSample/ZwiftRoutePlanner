@@ -11,7 +11,21 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from . import utility
+
+def generate_secret_key(path):
+    from django.core.management.utils import get_random_secret_key
+
+    file = open(path, "a")
+    print("Writing secret key to file: " + path)
+    file.write("PROJECT_SECRET_KEY = \"" + get_random_secret_key() + "\"")
+    file.close()
+
+try:
+    from . import utility
+except ImportError:
+    SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
+    generate_secret_key(os.path.join(SETTINGS_DIR, 'utility.py'))
+    from . import utility
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
