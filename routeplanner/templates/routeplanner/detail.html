@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Route Planner</title>
+  </head>
+  <body>
+    {% if routes_list %}
+        <ul>
+        {% for route in routes_list %}
+            <li><a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No routes are available.</p>
+    {% endif %}
+  </body>
+</html>
