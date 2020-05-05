@@ -5,10 +5,15 @@
     <title>Route Planner</title>
   </head>
   <body>
-    {% if routes_list %}
+    {% if routes_list and worlds_list %}
         <ul>
-        {% for route in routes_list %}
-            <li><a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a></li>
+        {% for world in worlds_list %}
+          <h3>{{ world.world_name }}</h3>  
+          {% for route in routes_list %}
+            {% if route.world.world_name == world.world_name %}
+              <li><a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a></li>
+            {% endif %}
+          {% endfor %}
         {% endfor %}
         </ul>
     {% else %}

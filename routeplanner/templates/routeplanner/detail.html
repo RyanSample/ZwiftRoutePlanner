@@ -5,12 +5,16 @@
     <title>Route Planner</title>
   </head>
   <body>
-    {% if routes_list %}
-        <ul>
-        {% for route in routes_list %}
-            <li><a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a></li>
-        {% endfor %}
-        </ul>
+    {% if route %}
+        <h1>
+          {{route.route_name}}
+        </h1>
+        <p>
+          Route length: 
+          {{route.route_length}} 
+          miles
+        </p>
+        <p>{{route.world.world_name}}</p>
     {% else %}
         <p>No routes are available.</p>
     {% endif %}
