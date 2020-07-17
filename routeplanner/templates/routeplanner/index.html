@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Route Planner</title>
-  </head>
-  <body>
-    {% if routes_list and worlds_list %}
-        <ul>
-        {% for world in worlds_list %}
-          <h3>{{ world.world_name }}</h3>  
-          {% for route in routes_list %}
-            {% if route.world.world_name == world.world_name %}
-              <li><a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a></li>
-            {% endif %}
-          {% endfor %}
+{% extends "routeplanner/base.html" %}
+
+{% block title %} Route Planner {% endblock %}
+{% block head %} 
+{% endblock %}
+{% block content %} 
+  {% if routes_list and worlds_list %}
+    {% for world in worlds_list %}
+      <h3>{{ world.world_name }}</h3>
+      <table>
+        <tr>
+        {% for route in routes_list %}
+          {% if route.world.world_name == world.world_name %}
+            <td class="route">
+              <a href="/routes/{{ route.route_name }}/">{{ route.route_name }}</a>
+            </td>
+          {% endif %}
         {% endfor %}
-        </ul>
-    {% else %}
-        <p>No routes are available.</p>
-    {% endif %}
-  </body>
-</html>
+        </tr>
+      </table>
+    {% endfor %}
+  {% else %}
+    <p>No routes are available.</p>
+  {% endif %}
+{% endblock %}

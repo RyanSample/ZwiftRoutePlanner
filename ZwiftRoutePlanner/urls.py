@@ -16,8 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+# Used in development to serve static files
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('routeplanner.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+# Used in development to serve static files
+urlpatterns += staticfiles_urlpatterns()
